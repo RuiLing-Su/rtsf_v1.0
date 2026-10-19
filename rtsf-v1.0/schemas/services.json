@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/services.json",
+  "title": "Services",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "common.json#/$defs/envelope"
+        }
+      ],
+      "properties": {
+        "method": {
+          "const": "task.path.set"
+        },
+        "data": {
+          "$ref": "common.json#/$defs/pathData"
+        }
+      },
+      "not": {
+        "required": [
+          "request_id"
+        ]
+      }
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "common.json#/$defs/envelope"
+        }
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "task.start",
+            "task.pause",
+            "task.resume",
+            "task.cancel"
+          ]
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "$ref": "common.json#/$defs/id"
+            }
+          },
+          "required": [
+            "task_id"
+          ]
+        }
+      },
+      "not": {
+        "required": [
+          "request_id"
+        ]
+      }
+    }
+  ]
+}

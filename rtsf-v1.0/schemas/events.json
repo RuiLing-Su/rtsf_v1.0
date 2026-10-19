@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/events.json",
+  "title": "Discrete events",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "common.json#/$defs/envelope"
+        }
+      ],
+      "properties": {
+        "method": {
+          "const": "task.state_changed"
+        },
+        "data": {
+          "allOf": [
+            {
+              "$ref": "common.json#/$defs/taskState"
+            }
+          ],
+          "properties": {
+            "previous_status": {
+              "enum": [
+                null,
+                "ACCEPTED",
+                "RUNNING",
+                "PAUSED"
+              ]
+            }
+          },
+          "required": [
+            "previous_status"
+          ]
+        }
+      },
+      "not": {
+        "required": [
+          "request_id"
+        ]
+      }
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "common.json#/$defs/envelope"
+        }
+      ],
+      "properties": {
+        "method": {
+          "const": "device.fault"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "fault_id": {
+              "$ref": "common.json#/$defs/id"
+            },
+            "error_code": {
+              "enum": [
+                "LOCALIZATION_LOST",
+                "PATH_BLOCKED",
+                "LOW_BATTERY",
+                "EMERGENCY_STOP",
+                "INTERNAL_ERROR",
+                "ROBOT_NOT_READY"
+              ]
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "detail": {
+              "type": "string"
+            },
+            "task_id": {
+              "$ref": "common.json#/$defs/id"
+            }
+          },
+          "required": [
+            "fault_id",
+            "error_code",
+            "active"
+          ]
+        }
+      },
+      "not": {
+        "required": [
+          "request_id"
+        ]
+      }
+    }
+  ]
+}

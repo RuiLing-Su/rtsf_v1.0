@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000001",
+  "robot_id": "go2-01",
+  "timestamp": 1700000001000,
+  "method": "task.path.set",
+  "data": {
+    "task_id": "task-001",
+    "map_id": "map-001",
+    "path": {
+      "path_id": "path-001",
+      "version": 1,
+      "waypoints": [
+        {
+          "seq": 0,
+          "x": 1.175,
+          "y": -5.725,
+          "yaw": 0.0
+        },
+        {
+          "seq": 1,
+          "x": 1.175,
+          "y": -6.025
+        }
+      ]
+    },
+    "expire_at": 1700000601000
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000015",
+  "robot_id": "go2-01",
+  "timestamp": 1700000015000,
+  "method": "trajectory.batch",
+  "data": {
+    "task_id": "task-001",
+    "map_id": "map-001",
+    "path_id": "path-001",
+    "path_version": 1,
+    "batch_seq": 1,
+    "final": true,
+    "samples": [],
+    "base_frame_id": "base_link"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/task_state.json",
+  "allOf": [
+    {
+      "$ref": "common.json#/$defs/envelope"
+    }
+  ],
+  "properties": {
+    "method": {
+      "const": "task.state"
+    },
+    "data": {
+      "$ref": "common.json#/$defs/taskState"
+    }
+  },
+  "not": {
+    "required": [
+      "request_id"
+    ]
+  }
+}

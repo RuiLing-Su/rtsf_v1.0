@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/rtsf.json",
+  "title": "RTSF envelope dispatch",
+  "oneOf": [
+    {
+      "$ref": "services.json"
+    },
+    {
+      "$ref": "services_reply.json"
+    },
+    {
+      "$ref": "device_state.json"
+    },
+    {
+      "$ref": "map_info.json"
+    },
+    {
+      "$ref": "task_state.json"
+    },
+    {
+      "$ref": "events.json"
+    },
+    {
+      "$ref": "trajectory.json"
+    }
+  ]
+}

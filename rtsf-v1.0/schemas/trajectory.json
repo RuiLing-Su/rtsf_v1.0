@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/trajectory.json",
+  "allOf": [
+    {
+      "$ref": "common.json#/$defs/envelope"
+    }
+  ],
+  "properties": {
+    "method": {
+      "const": "trajectory.batch"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "map_id",
+        "path_id",
+        "path_version",
+        "batch_seq",
+        "final",
+        "samples",
+        "task_id",
+        "base_frame_id"
+      ],
+      "properties": {
+        "map_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "path_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "path_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "batch_seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "final": {
+          "type": "boolean"
+        },
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sample"
+          }
+        },
+        "task_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "base_frame_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "if": {
+        "properties": {
+          "final": {
+            "const": false
+          }
+        },
+        "required": [
+          "final"
+        ]
+      },
+      "then": {
+        "properties": {
+          "samples": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  },
+  "not": {
+    "required": [
+      "request_id"
+    ]
+  },
+  "$defs": {
+    "sample": {
+      "type": "object",
+      "required": [
+        "t",
+        "x",
+        "y",
+        "yaw"
+      ],
+      "properties": {
+        "t": {
+          "$ref": "common.json#/$defs/timestamp_ms"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "yaw": {
+          "type": "number"
+        },
+        "speed_mps": {
+          "type": "number",
+          "minimum": 0
+        },
+        "vx": {
+          "type": "number"
+        },
+        "vy": {
+          "type": "number"
+        },
+        "wz": {
+          "type": "number"
+        },
+        "wp_seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "loc_quality": {
+          "enum": [
+            "GOOD",
+            "DEGRADED",
+            "LOST"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000010",
+  "robot_id": "go2-01",
+  "timestamp": 1700000010000,
+  "method": "map.info",
+  "data": {
+    "map_id": "map-001",
+    "base_frame_id": "base_link",
+    "bounds": {
+      "min_x": -8.65,
+      "min_y": -9.25,
+      "max_x": 6.0,
+      "max_y": 5.65
+    },
+    "grid": {
+      "resolution_m": 0.05,
+      "width": 293,
+      "height": 298,
+      "origin": {
+        "x": -8.65,
+        "y": -9.25,
+        "yaw": 0.0
+      }
+    },
+    "map_file": {
+      "url": "https://files.example.com/maps/map-001.zip",
+      "format": "ROS_MAP_ZIP",
+      "sha256": "6bfedd252cbb1a514189a4900b1ee98714b25705b189da3f0c83dcebcf5c5be6"
+    }
+  }
+}

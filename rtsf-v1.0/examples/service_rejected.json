@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000007",
+  "robot_id": "go2-01",
+  "timestamp": 1700000007000,
+  "method": "task.path.set",
+  "request_id": "00000000-0000-4000-8000-000000000001",
+  "data": {
+    "task_id": "task-001",
+    "result": "REJECTED",
+    "error_code": "STALE_PATH_VERSION"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/services_reply.json",
+  "allOf": [
+    {
+      "$ref": "common.json#/$defs/envelope"
+    },
+    {
+      "if": {
+        "properties": {
+          "data": {
+            "properties": {
+              "result": {
+                "const": "ACCEPTED"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "method": {
+            "enum": [
+              "task.path.set",
+              "task.start",
+              "task.pause",
+              "task.resume",
+              "task.cancel"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "method": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "result": {
+          "enum": [
+            "ACCEPTED",
+            "REJECTED"
+          ]
+        },
+        "error_code": {
+          "$ref": "common.json#/$defs/ackErrorCode"
+        },
+        "error_msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "if": {
+        "properties": {
+          "result": {
+            "const": "REJECTED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "error_code"
+        ]
+      },
+      "else": {
+        "required": [
+          "task_id"
+        ],
+        "properties": {
+          "error_code": false,
+          "error_msg": false
+        }
+      }
+    }
+  },
+  "required": [
+    "request_id"
+  ]
+}

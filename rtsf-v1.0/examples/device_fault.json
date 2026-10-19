@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000013",
+  "robot_id": "go2-01",
+  "timestamp": 1700000013000,
+  "method": "device.fault",
+  "data": {
+    "fault_id": "fault-001",
+    "error_code": "EMERGENCY_STOP",
+    "active": true,
+    "task_id": "task-001"
+  }
+}

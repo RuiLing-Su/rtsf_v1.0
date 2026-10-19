@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/device_state.json",
+  "allOf": [
+    {
+      "$ref": "common.json#/$defs/envelope"
+    }
+  ],
+  "properties": {
+    "method": {
+      "const": "device.state"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "online",
+        "source"
+      ],
+      "properties": {
+        "online": {
+          "type": "boolean"
+        },
+        "state": {
+          "enum": [
+            "IDLE",
+            "BUSY",
+            "ERROR"
+          ]
+        },
+        "map_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "battery_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "active_task_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "source": {
+          "enum": [
+            "REPORT",
+            "LWT",
+            "SHUTDOWN"
+          ]
+        }
+      },
+      "if": {
+        "properties": {
+          "online": {
+            "const": true
+          }
+        },
+        "required": [
+          "online"
+        ]
+      },
+      "then": {
+        "required": [
+          "state"
+        ],
+        "properties": {
+          "source": {
+            "const": "REPORT"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "source": {
+            "enum": [
+              "LWT",
+              "SHUTDOWN"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "not": {
+    "required": [
+      "request_id"
+    ]
+  }
+}

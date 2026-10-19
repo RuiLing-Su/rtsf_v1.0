@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/path_capabilities.json",
+  "allOf": [
+    {
+      "$ref": "services.json"
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "task.path.set"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "properties": {
+              "path": {
+                "properties": {
+                  "waypoints": {
+                    "items": {
+                      "properties": {
+                        "type": {
+                          "const": "MUST_REACH"
+                        },
+                        "speed_mps": false,
+                        "tolerance_m": false,
+                        "action": false,
+                        "action_params": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

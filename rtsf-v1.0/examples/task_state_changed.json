@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000012",
+  "robot_id": "go2-01",
+  "timestamp": 1700000012000,
+  "method": "task.state_changed",
+  "data": {
+    "task_id": "task-001",
+    "status": "COMPLETED",
+    "path_id": "path-001",
+    "path_version": 1,
+    "progress": 1.0,
+    "revision": 3,
+    "previous_status": "RUNNING"
+  }
+}

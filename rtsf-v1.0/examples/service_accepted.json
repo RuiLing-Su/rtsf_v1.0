@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000006",
+  "robot_id": "go2-01",
+  "timestamp": 1700000006000,
+  "method": "task.path.set",
+  "request_id": "00000000-0000-4000-8000-000000000001",
+  "data": {
+    "task_id": "task-001",
+    "result": "ACCEPTED"
+  }
+}

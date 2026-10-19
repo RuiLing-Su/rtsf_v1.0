@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000011",
+  "robot_id": "go2-01",
+  "timestamp": 1700000011000,
+  "method": "task.state",
+  "data": {
+    "task_id": "task-001",
+    "status": "RUNNING",
+    "path_id": "path-001",
+    "path_version": 1,
+    "current_wp_seq": 0,
+    "progress": 0.1,
+    "revision": 2
+  }
+}

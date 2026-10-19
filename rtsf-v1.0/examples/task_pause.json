@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000003",
+  "robot_id": "go2-01",
+  "timestamp": 1700000003000,
+  "method": "task.pause",
+  "data": {
+    "task_id": "task-001"
+  }
+}

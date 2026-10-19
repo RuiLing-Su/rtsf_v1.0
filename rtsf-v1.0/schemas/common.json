@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rtsf.local/schemas/v1/common.json",
+  "title": "RTSF common definitions",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "pose2d": {
+      "type": "object",
+      "required": [
+        "x",
+        "y",
+        "yaw"
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "yaw": {
+          "type": "number"
+        }
+      }
+    },
+    "ackErrorCode": {
+      "enum": [
+        "SCHEMA_INVALID",
+        "VERSION_UNSUPPORTED",
+        "EXPIRED",
+        "MAP_MISMATCH",
+        "WAYPOINT_OUT_OF_MAP",
+        "ACTION_UNSUPPORTED",
+        "FEATURE_UNSUPPORTED",
+        "TASK_NOT_FOUND",
+        "INVALID_TRANSITION",
+        "STALE_PATH_VERSION",
+        "PATH_VERSION_CONFLICT",
+        "ROBOT_BUSY",
+        "ROBOT_NOT_READY",
+        "LOCALIZATION_LOST",
+        "INTERNAL_ERROR",
+        "METHOD_UNSUPPORTED",
+        "MESSAGE_ID_CONFLICT"
+      ]
+    },
+    "statusErrorCode": {
+      "enum": [
+        "LOCALIZATION_LOST",
+        "PATH_BLOCKED",
+        "LOW_BATTERY",
+        "EMERGENCY_STOP",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "timestamp_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9223372036854775807
+    },
+    "envelope": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "message_id": {
+          "$ref": "common.json#/$defs/uuid"
+        },
+        "robot_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "timestamp": {
+          "$ref": "common.json#/$defs/timestamp_ms"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+        },
+        "request_id": {
+          "$ref": "common.json#/$defs/uuid"
+        },
+        "data": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema_version",
+        "message_id",
+        "robot_id",
+        "timestamp",
+        "method",
+        "data"
+      ]
+    },
+    "waypoint": {
+      "type": "object",
+      "required": [
+        "seq",
+        "x",
+        "y"
+      ],
+      "properties": {
+        "seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "yaw": {
+          "type": "number"
+        },
+        "type": {
+          "enum": [
+            "MUST_REACH",
+            "VIA"
+          ]
+        },
+        "tolerance_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_params": {
+          "type": "object"
+        }
+      }
+    },
+    "pathData": {
+      "type": "object",
+      "required": [
+        "map_id",
+        "path",
+        "task_id",
+        "expire_at"
+      ],
+      "properties": {
+        "map_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "expire_at": {
+          "$ref": "common.json#/$defs/timestamp_ms"
+        },
+        "path": {
+          "type": "object",
+          "required": [
+            "path_id",
+            "version",
+            "waypoints"
+          ],
+          "properties": {
+            "path_id": {
+              "$ref": "common.json#/$defs/id"
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "waypoints": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 500,
+              "items": {
+                "$ref": "common.json#/$defs/waypoint"
+              }
+            }
+          }
+        },
+        "task_id": {
+          "$ref": "common.json#/$defs/id"
+        }
+      }
+    },
+    "taskState": {
+      "type": "object",
+      "required": [
+        "status",
+        "task_id",
+        "revision",
+        "path_id",
+        "path_version"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ACCEPTED",
+            "RUNNING",
+            "PAUSED",
+            "COMPLETED",
+            "CANCELED",
+            "FAILED"
+          ]
+        },
+        "path_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "path_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "current_wp_seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "progress": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "error_code": {
+          "$ref": "common.json#/$defs/statusErrorCode"
+        },
+        "task_id": {
+          "$ref": "common.json#/$defs/id"
+        },
+        "revision": {
+          "$ref": "common.json#/$defs/revision"
+        }
+      },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "FAILED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "error_code"
+        ]
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "COMPLETED",
+                  "CANCELED",
+                  "FAILED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "current_wp_seq": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "COMPLETED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "progress": {
+                "const": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

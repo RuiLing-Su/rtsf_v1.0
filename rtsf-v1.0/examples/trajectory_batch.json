@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "message_id": "00000000-0000-4000-8000-000000000014",
+  "robot_id": "go2-01",
+  "timestamp": 1700000014000,
+  "method": "trajectory.batch",
+  "data": {
+    "task_id": "task-001",
+    "map_id": "map-001",
+    "path_id": "path-001",
+    "path_version": 1,
+    "batch_seq": 0,
+    "final": false,
+    "samples": [
+      {
+        "t": 1700000010000,
+        "x": 1.175,
+        "y": -5.725,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000010200,
+        "x": 1.175,
+        "y": -6.025,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000010400,
+        "x": 1.175,
+        "y": -5.725,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000010600,
+        "x": 1.175,
+        "y": -6.025,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000010800,
+        "x": 1.175,
+        "y": -5.725,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000011000,
+        "x": 1.175,
+        "y": -6.025,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000011200,
+        "x": 1.175,
+        "y": -5.725,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000011400,
+        "x": 1.175,
+        "y": -6.025,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000011600,
+        "x": 1.175,
+        "y": -5.725,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      },
+      {
+        "t": 1700000011800,
+        "x": 1.175,
+        "y": -6.025,
+        "yaw": 0.02,
+        "speed_mps": 0.7,
+        "vx": 0.7,
+        "vy": 0.0,
+        "wp_seq": 0,
+        "loc_quality": "GOOD"
+      }
+    ],
+    "base_frame_id": "base_link"
+  }
+}
